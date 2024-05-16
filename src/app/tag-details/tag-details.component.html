@@ -14,5 +14,29 @@
                 Tag bearbeiten
             </a>
         }
+
+        @if(authService.isLoggedIn()){
+
+            @if(tag?.notes !== undefined && tag?.notes?.length !== 0){
+                <h3>Notizen mit diesem Tag:</h3>
+            }
+            @for(note of tag?.notes; track note){
+                <div  [routerLink]="['/lists', note.list_id]" class="ui tiny right labeled icon button"><i class="arrow right icon"></i>{{ note.title }}</div>
+                <br><br>
+            }
+
+            @if(tag?.todos !== undefined && tag?.todos?.length !== 0){
+                <h3>Todos mit diesem Tag:</h3>
+            }
+            @for(todo of tag?.todos; track todo){
+                <div  [routerLink]="['/todos', todo.id]" class="ui tiny right labeled icon button"><i class="arrow right icon"></i>{{ todo.title }}</div>
+                <br><br>
+            }
+
+        }@else{
+            <br><br>
+            <div>Melde dich an um Todos und Notizen mit diesem Tag zu sehen.</div>
+            <button [routerLink]="'/login'" class="ui red button">Zum Login</button>
+        }
     </div>
 }

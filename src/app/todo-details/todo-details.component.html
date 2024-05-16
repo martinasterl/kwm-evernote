@@ -10,6 +10,7 @@
                 <span>{{todo.dueDate}}</span>
                 <div class="detail">fällig</div>
             </div>
+
             <br><br>
             @if(todo.user_id){
                 <div>
@@ -28,7 +29,7 @@
             @if(todo.tags){
                 @for(tag of todo.tags; track tag){
                     <div class="ui teal tag label">{{ tag.name }}</div>
-                    <br>
+                    <br><br>
                 }
             }
             @if(todo.image){
