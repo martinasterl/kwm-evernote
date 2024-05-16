@@ -1,0 +1,67 @@
+<h1>Listenformular</h1>
+<form class="ui large form" [formGroup]="listForm" (ngSubmit)="submitForm()">
+    <input type="hidden" formControlName="id">
+    <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name">
+        @if(errors['name']){
+            <div class="ui negative message">
+                {{errors['name']}}
+            </div>
+        }
+    </div>
+    <div class="field">
+        <label for="isPublic">Öffentlich</label>
+        <input type="checkbox" id="isPublic" formControlName="isPublic">
+    </div>
+    <div class="field">
+        <h3>Notizen</h3>  
+        <div formArrayName="notes">
+            @for(control of notes.controls; let i=$index, l=$last; track control){
+                <div class="fields" [formGroupName]="i">
+                    <input type="hidden" formControlName="note_id">
+                    <div class="field">
+                        <label for="title">Titel</label>
+                        <input type="text" id="title" formControlName="title">
+                    </div>
+                    <div class="field">
+                        <label for="description">Beschreibung</label>
+                        <input type="text" id="description" formControlName="description">
+                    </div>
+                    <div class="field">
+                        <label for="image">Bild</label>
+                        <input type="url" id="image" formControlName="image" placeholder="http://bild_url">
+                    </div>
+                    <div class="field">
+                        <label for="tags">Tags</label>
+                        <select id="tags" formControlName="tags" multiple>
+                            @for(tag of tags; track tag){
+                                <option [value]="tag.id">{{tag.name}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="todos">Todos</label>
+                        <select id="todos" formControlName="todos" multiple>
+                            @for(todo of todos; track todo){
+                                @if(!todo.note_id){
+                                    <option [value]="todo.id">{{todo.title}}</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    @if(l){
+                        <div class="field">
+                            <button (click)="addNotesControl()" class="ui large button" type="button">+</button>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        @if(errors['notes']){
+            <div class="ui negative message">{{errors['notes']}}</div>
+        }
+    </div>
+    <button type="submit" class="ui button" [disabled]="listForm.invalid">Speichern</button>
+</form>

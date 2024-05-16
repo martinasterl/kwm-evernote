@@ -1,0 +1,13 @@
+<h1>Todos</h1>
+<div class="ui middle aligned selction divided list">
+    @for(todo of todos; track todo){
+        <a class="item en-todo-list-item" [todo]="todo" [routerLink]="todo.id.toString()"></a>
+        @if(!todo.note_id){
+            
+        }
+    }
+</div>
+
+
+
+

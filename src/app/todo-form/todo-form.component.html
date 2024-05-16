@@ -1,0 +1,53 @@
+<h1>Todoformular</h1>
+<form class="ui large form" [formGroup]="todoForm" (ngSubmit)="submitForm()">
+    <input type="hidden" formControlName="id">
+    <div class="field">
+        <label for="title">Titel</label>
+        <input type="text" id="title" formControlName="title">
+    </div>
+    <div class="field">
+        <label for="description">Beschreibung</label>
+        <input type="text" id="description" formControlName="description">
+    </div>
+    <div class="field">
+        <label for="dueDate">Fälligkeitsdatum</label>
+        <input type="date" id="dueDate" formControlName="dueDate">
+    </div>
+    <div class="field">
+        <label for="isPublic">Öffentlich</label>
+        <input type="checkbox" id="isPublic" formControlName="isPublic">
+    </div>
+    
+    <div class="field">
+        <label for="image">Bild</label>
+        <input type="url" id="image" formControlName="image" placeholder="http://bild_url">
+    </div>
+    <div class="field">
+        <label for="tags">Tags</label>
+        <select id="tags" formControlName="tags" multiple>
+            @for(tag of tags; track tag){
+                <option [value]="tag.id">{{tag.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="field">
+        <label for="note_id">Notiz</label>
+        <select id="note_id" formControlName="note_id">
+            @for(note of notes; track note){
+                <option [value]="note.id">{{note.title}}</option>
+            }
+        </select>
+    </div>
+    <div class="field">
+        <label for="user_id">Zuständige*r</label>
+        <select id="user_id" formControlName="user_id">
+            @for(user of users; track user){
+                <option [value]="user.id">{{user.username}}</option>
+            }
+        </select>
+    </div>
+
+
+
+    <button type="submit" class="ui button" [disabled]="todoForm.invalid">Speichern</button>
+</form>

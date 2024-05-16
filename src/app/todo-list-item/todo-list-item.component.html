@@ -1,0 +1,9 @@
+@if(todo){
+    <div class="content">
+        <span><b>{{todo.title}}</b>
+        @if(todo.note_id){
+            (gehört zu einer Notiz)
+        }
+        </span>
+    </div>
+}

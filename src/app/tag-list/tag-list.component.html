@@ -1,0 +1,6 @@
+<h1>Tags</h1>
+<div class="ui middle aligned selction divided list">
+    @for(tag of tags; track tag){
+        <a class="item en-tag-list-item" [tag]="tag" [routerLink]="tag.id.toString()"></a>
+    }
+</div>

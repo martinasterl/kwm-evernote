@@ -1,0 +1,7 @@
+<h1>Listen</h1>
+<div class="ui middle aligned selction divided list">
+    @for(list of lists; track list){
+        <a class="item en-list-list-item" [list]="list" [routerLink]="list.id.toString()"></a>
+
+    }
+</div>

@@ -1,0 +1,59 @@
+@if(todo){
+    @if(todo.isPublic || authService.isLoggedIn()){
+        <div class="content">
+
+            <div class="header"><h1>{{todo.title}}</h1></div>
+            <div>{{ todo.description }}</div>
+            <br>
+            <div class="ui image label">
+                <i class="calendar icon"></i>
+                <span>{{todo.dueDate}}</span>
+                <div class="detail">fällig</div>
+            </div>
+            <br><br>
+            @if(todo.user_id){
+                <div>
+                    @for(user of users; track user){
+                        @if(user.id === todo.user_id){
+                            <div class="ui image label">
+                                <i class="user icon"></i>
+                                <span>{{user.username}}</span>
+                                <div class="detail">verantwortlich</div>
+                            </div>
+                        }
+                    }
+                    <br><br>
+                </div>      
+             }
+            @if(todo.tags){
+                @for(tag of todo.tags; track tag){
+                    <div class="ui teal tag label">{{ tag.name }}</div>
+                    <br>
+                }
+            }
+            @if(todo.image){
+                <br>
+                <img class="ui small image" [src]="todo.image">
+            }
+    
+            <br>   
+            <button [routerLink]="'/todos'" class="ui tiny gray button">Zurück zu den Todos</button>
+    
+            @if(authService.isLoggedIn()){
+                <button class="ui tiny red labeled icon button" (click)="removeTodo()">
+                    <i class="remove icon"></i>
+                    Todo Löschen
+                </button>
+                <a class="ui tiny yellow labeled icon button" [routerLink]="['../../todosform', todo.id]">
+                    <i class="edit icon"></i>
+                    Todo bearbeiten
+                </a> 
+            }
+    
+        </div>
+    }@else{
+        <div>Bitte melde dich an um den Inhalt zu sehen!</div>
+        <button [routerLink]="'/login'" class="ui red button">Zum Login</button>
+    }
+}
+
