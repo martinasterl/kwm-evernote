@@ -13,13 +13,14 @@
                 <div class="ui segment">
                     <div><b>{{ note.title }}</b></div>
                     <div>{{ note.description }}</div>
-                    @if(note.image){
-                        <img class="ui small image" [src]="note.image">
-                    }
                     @if(note.tags){
                         @for(tag of note.tags; track tag){
-                            <div>Tags: {{ tag.name }}</div>
+                            <div class="ui teal tag label">{{ tag.name }}</div>
+                            <br><br>
                         }
+                    }
+                    @if(note.image){
+                        <img class="ui small image" [src]="note.image">
                     }
                     @if(note?.todos !== undefined && note?.todos?.length !== 0){
                         <h5>Todos:</h5>
