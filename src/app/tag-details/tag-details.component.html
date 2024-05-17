@@ -17,18 +17,18 @@
 
         @if(authService.isLoggedIn()){
 
-            @if(tag?.notes !== undefined && tag?.notes?.length !== 0){
+            @if(tag.notes !== undefined && tag.notes.length !== 0){
                 <h3>Notizen mit diesem Tag:</h3>
             }
-            @for(note of tag?.notes; track note){
+            @for(note of tag.notes; track note){
                 <div  [routerLink]="['/lists', note.list_id]" class="ui tiny right labeled icon button"><i class="arrow right icon"></i>{{ note.title }}</div>
                 <br><br>
             }
 
-            @if(tag?.todos !== undefined && tag?.todos?.length !== 0){
+            @if(tag.todos !== undefined && tag.todos.length !== 0){
                 <h3>Todos mit diesem Tag:</h3>
             }
-            @for(todo of tag?.todos; track todo){
+            @for(todo of tag.todos; track todo){
                 <div  [routerLink]="['/todos', todo.id]" class="ui tiny right labeled icon button"><i class="arrow right icon"></i>{{ todo.title }}</div>
                 <br><br>
             }

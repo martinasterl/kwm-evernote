@@ -4,10 +4,10 @@
             <div class="header"><h1>{{list.name}}</h1></div>
             <br>
             <div class="metadata">
-            @if(list?.notes !== undefined && list?.notes?.length !== 0){
+            @if(list.notes !== undefined && list.notes.length !== 0){
                 <h3>Notizen:</h3>
             }
-            @for(note of list?.notes; track note){
+            @for(note of list.notes; track note){
                 
 
                 <div class="ui segment">
@@ -22,7 +22,7 @@
                     @if(note.image){
                         <img class="ui small image" [src]="note.image">
                     }
-                    @if(note?.todos !== undefined && note?.todos?.length !== 0){
+                    @if(note.todos !== undefined && note.todos.length !== 0){
                         <h5>Todos:</h5>
                     }
                     <div class="metadata">
